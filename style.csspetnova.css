@@ -121,7 +121,7 @@ h1, h2, h3 {
 .hero img.foto-fondo {
     width: 100%;
     height: 620px;
-    object-fit: cover;
+    object-fit: cover; /* llena el espacio sin deformarse, recortando lo que sobra */
 }
 
 .hero .capa-oscura {
@@ -626,5 +626,3 @@ footer ul li {
     }
 
 }
-
-</style>
