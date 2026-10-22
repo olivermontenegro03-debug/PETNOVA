@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pet Nova</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<!-- Leaflet: librería del mapa interactivo -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="petnova.css">
+</head>
+<body>
+
+<!-- MENÚ -->
+<header class="menu" id="menu">
+    <a class="logo" href="#inicio">
+        <img src="Pet Nova, logos oficiales..png" alt="" onerror="this.style.display='none'">
+        <span class="logo-texto"><strong>PET NOVA</strong><small>- Cuidamos lo que amas</small></span>
+    </a>
+    <button class="menu-boton" id="menuBoton" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav id="menuNav">
+        <a href="#inicio">Home</a>
+        <a href="#quienes-somos">About Us</a>
+        <a href="#funciones">Functions</a>
+        <a href="#mapa">Pet Map</a>
+        <a href="#contacto">Contact</a>
+    </nav>
+    <a class="login" href="#contacto"><span class="circulo-morado"></span>LOG IN</a>
+</header>
+
+<!-- HERO con la foto principal -->
+<section class="hero" id="inicio">
+    <img class="hero-fondo" src="img/principal.jpg" alt="Un perro y un gato descansando juntos sobre el pasto">
+    <div class="hero-capa"></div>
+    <span class="hero-pata" aria-hidden="true">🐾</span>
+    <div class="hero-texto">
+        <h1>Pet Nova</h1>
+        <p>The app that helps you care for your pet's health and safety. Keep their medical history, receive vaccine reminders, activate Paw Alert in emergencies, and find them on the map, all from the convenience of your mobile phone.</p>
+        <a class="boton" href="#funciones">See what it does</a>
+    </div>
+</section>
+
+<!-- RAISED WITH LOVE -->
+<section class="amor" id="quienes-somos">
+    <div class="forma forma-celeste-1"></div>
+    <div class="forma forma-celeste-2"></div>
+    <div class="forma forma-flor flor-1"></div>
+    <div class="forma forma-flor flor-2"></div>
+    <div class="contenedor">
+        <h2 class="reveal">Raised with love and plenty of dedication today</h2>
+        <div class="cartel-morado reveal">
+            <span class="sticker-pata" aria-hidden="true">🐾</span>
+            We believe every pet deserves the best start. At Pet Nova, we develop tools to help you care for their health, well-being, and happiness, accompanying you during every single stage of their long and busy lives.
+        </div>
+    </div>
+</section>
+
+<!-- FUNCIONES: acordeón -->
+<section class="bienestar" id="funciones">
+    <div class="contenedor">
+        <div class="tarjeta-titulo reveal">
+            <h2>Everything for your pet's well-being now</h2>
+            <p>Everything your favorite pet needs, on a single platform. Hover or tap a card to open it.</p>
+        </div>
+
+        <div class="acordeon" id="acordeon">
+            <article class="panel" tabindex="0" style="--foto:url('img/perfil.jpg'); --color:#6b5a9e">
+                <span class="etiqueta">PET PROFILE</span>
+                <div class="info"><h3>Pet Profile</h3><p>Name, breed, age, photos and microchip number. Everything about your pet in one card.</p></div>
+            </article>
+            <article class="panel active" tabindex="0" style="--foto:url('img/historial.jpg'); --color:#3d7a96">
+                <span class="etiqueta">MEDICAL HISTORY</span>
+                <div class="info"><h3>Medical History</h3><p>Vaccines with push reminders, vet visits, and active medications, all in one place.</p></div>
+            </article>
+            <article class="panel" tabindex="0" style="--foto:url('img/alerta.jpg'); --color:#8a5a7a">
+                <span class="etiqueta">PAW ALERT</span>
+                <div class="info"><h3>Paw Alert</h3><p>If your pet goes missing, send an alert to people and vets near you in one tap.</p></div>
+            </article>
+            <article class="panel" tabindex="0" style="--foto:url('img/mapa.jpg'); --color:#2a2a4a">
+                <span class="etiqueta">PET MAP</span>
+                <div class="info"><h3>Pet Map</h3><p>Find vets, stores and pet-friendly places near you, and see your pet's last known location.</p></div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- PET MAP interactivo -->
+<section class="mapa-seccion" id="mapa">
+    <div class="contenedor">
+        <h2 class="reveal">Connect with local services near you with</h2>
+
+        <div class="tarjeta-petmap reveal">
+            <h3>Pet Map</h3>
+            <p>With Pet Map you find veterinarians, services and pet-friendly spots near you, and see the last recorded location of your beloved pets in just a few seconds.</p>
+        </div>
+
+        <div class="mapa-barra">
+            <div class="filtros" id="filtros" role="group" aria-label="Filtrar lugares">
+                <button class="filtro activo" data-tipo="todos">All</button>
+                <button class="filtro" data-tipo="vet">🩺 Vets</button>
+                <button class="filtro" data-tipo="tienda">🛍️ Pet stores</button>
+                <button class="filtro" data-tipo="peluqueria">✂️ Grooming</button>
+                <button class="filtro" data-tipo="parque">🌳 Dog parks</button>
+            </div>
+            <div class="acciones">
+                <button class="boton-chico" id="btnUbicacion">📍 My location</button>
+                <button class="boton-chico" id="btnZona">🔄 Search this area</button>
+            </div>
+        </div>
+
+        <div id="map" aria-label="Mapa interactivo de servicios para mascotas"></div>
+        <p class="mapa-estado" id="mapaEstado" role="status">Loading places…</p>
+        <ul class="lista-lugares" id="listaLugares"></ul>
+    </div>
+</section>
+
+<!-- PET MOMENTS: carrusel -->
+<section class="momentos">
+    <img class="foto-fondo" src="img/momentos-fondo.jpg" alt="" onerror="this.style.display='none'">
+    <div class="momentos-capa"></div>
+    <div class="contenedor">
+        <h2 class="reveal">Pet Moments</h2>
+        <p class="reveal">Every photo tells the story of our greatest adventures and the quiet beauty of our daily lives together. These precious memories are a gift we will cherish forever.</p>
+    </div>
+    <div class="carrusel" id="carrusel" aria-label="Carrusel de fotos de mascotas">
+        <div class="carrusel-pista" id="pista"></div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacto">
+    <div class="contenedor">
+        <div class="footer-columnas">
+            <div><h4>Pet Nova</h4><p>La Chorrera, Panamá Oeste, Panamá</p></div>
+            <div><h4>Contacto</h4><ul>
+                <li>123-456-7890</li>
+                <li><a href="mailto:petnovitas2027@gmail.com">petnovitas2027@gmail.com</a></li>
+            </ul></div>
+            <div><h4>Síguenos</h4><ul>
+                <li><a href="http://www.facebook.com">Facebook</a></li>
+                <li><a href="http://www.instagram.com">Instagram</a></li>
+                <li><a href="http://www.tiktok.com">TikTok</a></li>
+            </ul></div>
+        </div>
+        <p class="copyright">© PetNova by PetNovitasTeam</p>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="petnova.js"></script>
+</body>
+</html>
