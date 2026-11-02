@@ -34,7 +34,7 @@
 <section class="hero" id="inicio">
     <img class="hero-fondo" src="foto principal.avif" alt="Un perro y un gato descansando juntos sobre el pasto">
     <div class="hero-capa"></div>
-    <span class="hero-pata" aria-hidden="true">🐾</span>
+    <span class="hero-pata" aria-hidden="true"><img src="petnovalogo.png" alt="Logo de Pet Nova"></span>
     <div class="hero-texto">
         <h1>Pet Nova</h1>
         <p>The app that helps you care for your pet's health and safety. Keep their medical history, receive vaccine reminders, activate Paw Alert in emergencies, and find them on the map, all from the convenience of your mobile phone.</p>
@@ -62,55 +62,32 @@
             </div>
         </div>
     </section>
-
-<!-- FUNCIONES: acordeón -->
- <link rel="stylesheet" href="stylecarrusel.css">
- 
+<!-- FUNCIONES -->
 <section class="bienestar" id="funciones">
-          <div class="slide-inner">
-                <input class="slide-open" type="radio" id="slide-1" 
-                      name="slide" aria-hidden="true" hidden="" checked="checked">
-                <div class="slide-item">
-                    <img src="petprofile.avif">
-                </div>
-                <input class="slide-open" type="radio" id="slide-2" 
-                      name="slide" aria-hidden="true" hidden="">
-                <div class="slide-item">
-                    <img src="medical.avif">
-                </div>
-                <input class="slide-open" type="radio" id="slide-3" 
-                      name="slide" aria-hidden="true" hidden="">
-                <div class="slide-item">
-                    <img src="paw.avif">
-                </div>
-                <input class="slide-open" type="radio" id="slide-4" 
-                      name="slide" aria-hidden="true" hidden="">
-                <div class="slide-item">
-                    <img src="petmap.avif">
-                </div>
-                 <label for="slide-4" class="slide-control prev control-1">‹</label>
-                <label for="slide-3" class="slide-control prev control-4">‹</label>
-                <label for="slide-2" class="slide-control next control-1">›</label>
-                <label for="slide-1" class="slide-control prev control-2">‹</label>
-                <label for="slide-3" class="slide-control next control-2">›</label>
-                <label for="slide-2" class="slide-control prev control-3">‹</label>
-                <label for="slide-1" class="slide-control next control-3">›</label>
-                <ol class="slide-indicador">
-                    <li>
-                        <label for="slide-1" class="slide-circulo">•</label>
-                    </li>
-                    <li>
-                        <label for="slide-2" class="slide-circulo">•</label>
-                    </li>
-                    <li>
-                        <label for="slide-3" class="slide-circulo">•</label>
-                    </li>
-                    <li>
-                        <label for="slide-4" class="slide-circulo">•</label>
-                    </li>
-                </ol>
-            </div>
+    <div class="contenedor">
+        <div class="tarjeta-titulo reveal">
+            <h2 data-i18n="fH"></h2>
+            <p data-i18n="fP"></p>
         </div>
+        <div class="acordeon hover-expand">
+            <article class="panel" tabindex="0" style="--foto:url(petmap.avif)">
+                <span class="etiqueta" data-i18n="p1"></span>
+                <div class="info"><h3 data-i18n="p1"></h3><p data-i18n="p1d"></p></div>
+            </article>
+            <article class="panel activa" tabindex="0" style="--foto:url(medical.avif)">
+                <span class="etiqueta" data-i18n="p2"></span>
+                <div class="info"><h3 data-i18n="p2"></h3><p data-i18n="p2d"></p></div>
+            </article>
+            <article class="panel" tabindex="0" style="--foto:url(petprofile.avif)">
+                <span class="etiqueta" data-i18n="p3"></span>
+                <div class="info"><h3 data-i18n="p3"></h3><p data-i18n="p3d"></p></div>
+            </article>
+            <article class="panel" tabindex="0" style="--foto:url(paw.avif)">
+                <span class="etiqueta" data-i18n="p4"></span>
+                <div class="info"><h3 data-i18n="p4"></h3><p data-i18n="p4d"></p></div>
+            </article>
+        </div>
+    </div>
 </section>
 <!-- PET MAP interactivo -->
 <section class="mapa-seccion" id="mapa">
@@ -125,14 +102,14 @@
         <div class="mapa-barra">
             <div class="filtros" id="filtros" role="group" aria-label="Filtrar lugares">
                 <button class="filtro activo" data-tipo="todos">All</button>
-                <button class="filtro" data-tipo="vet">🩺 Vets</button>
-                <button class="filtro" data-tipo="tienda">🛍️ Pet stores</button>
-                <button class="filtro" data-tipo="peluqueria">✂️ Grooming</button>
-                <button class="filtro" data-tipo="parque">🌳 Dog parks</button>
+                <button class="filtro" data-tipo="vet"> Vets</button>
+                <button class="filtro" data-tipo="tienda"> Pet stores</button>
+                <button class="filtro" data-tipo="peluqueria"> Grooming</button>
+                <button class="filtro" data-tipo="parque"> Dog parks</button>
             </div>
             <div class="acciones">
-                <button class="boton-chico" id="btnUbicacion">📍 My location</button>
-                <button class="boton-chico" id="btnZona">🔄 Search this area</button>
+                <button class="boton-chico" id="btnUbicacion"> My location</button>
+                <button class="boton-chico" id="btnZona"> Search this area</button>
             </div>
         </div>
 
@@ -144,7 +121,7 @@
 
 <!-- PET MOMENTS: carrusel -->
 <section class="momentos">
-    <img class="foto-fondo" src="img/momentos-fondo.jpg" alt="" onerror="this.style.display='none'">
+    <img class="foto-fondo" src="ftgato1.jpg" alt="" onerror="this.style.display='none'">
     <div class="momentos-capa"></div>
     <div class="contenedor">
         <h2 class="reveal">Pet Moments</h2>
