@@ -84,7 +84,7 @@ h1, h2, h3 { font-family: 'Baloo 2', Arial, sans-serif; font-weight: 800; }
 }
 .sticker-pata { position: absolute; top: -24px; right: 28px; width: 52px; height: 52px; background: #dceefc; border-radius: 50%; display: grid; place-items: center; font-size: 24px; }
 
-/* ---------- ACORDEÓN ---------- */
+/* ---------- ACORDEÓN ---------- 
 .bienestar { background: linear-gradient(180deg, #4a3a74 0%, #a995e0 100%); padding: 60px 0 80px; }
 .tarjeta-titulo { background: #4a3a74; color: #fff; border-radius: 24px; padding: 38px 40px; margin-bottom: 36px; }
 .tarjeta-titulo h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 8px; }
@@ -109,7 +109,38 @@ h1, h2, h3 { font-family: 'Baloo 2', Arial, sans-serif; font-weight: 800; }
 .info { position: absolute; left: 30px; bottom: 28px; width: 380px; max-width: calc(100% - 40px); z-index: 2; color: #fff; opacity: 0; transform: translateY(24px); transition: opacity .4s, transform .5s; }
 .panel.active .info { opacity: 1; transform: none; transition-delay: .25s; }
 .info h3 { font-size: 30px; margin-bottom: 6px; }
-.info p { line-height: 1.5; }
+.info p { line-height: 1.5; }*/
+.funciones-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.funcion-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.funcion-card:hover{
+    transform:translateY(-8px);
+}
+
+.funcion-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.funcion-card h3{
+    padding:20px 20px 10px;
+}
+
+.funcion-card p{
+    padding:0 20px 20px;
+}
 
 /* ---------- MAPA ---------- */
 .mapa-seccion { background: var(--celeste); padding: 80px 0; text-align: center; }
