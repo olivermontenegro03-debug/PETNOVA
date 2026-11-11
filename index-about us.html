@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us – Pet Nova</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ===================================================== */
+/* ===== PÁGINA: ABOUT US ===== */
+/* ===================================================== */
+
+:root {
+    --morado: #8268d5;
+    --morado-oscuro: #523f7c;
+    --morado-boton: #7c3aed;
+    --celeste: #0bbfdf;
+    --texto: #2d2545;
+    --blanco: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Transición suave al pasar de una página a otra (Chrome y Edge) */
+@view-transition {
+    navigation: auto;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--blanco);
+    background: var(--morado-oscuro);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* ----- Animación al aparecer con el scroll ----- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* ===================================================== */
+/* ----- MENÚ ----- */
+/* ===================================================== */
+.menu {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    width: calc(100% - 24px);
+    max-width: 1300px;
+    padding: 12px 28px;
+    background: var(--blanco);
+    border: 1px solid var(--morado);
+    border-radius: 40px;
+    box-shadow: 0 8px 30px rgba(130, 104, 213, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    line-height: 1.1;
+}
+
+.logo strong {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--morado-oscuro);
+}
+
+.logo span {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--morado);
+}
+
+.menu nav {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+.menu nav a {
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 17px;
+    color: var(--morado-oscuro);
+    padding-bottom: 3px;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.menu nav a:hover,
+.menu nav a.actual {
+    color: var(--morado);
+    border-color: var(--morado);
+}
+
+/* ===================================================== */
+/* ----- 1. OUR FAMILY (foto + parte borrosa) ----- */
+/* ===================================================== */
+.familia {
+    position: relative;
+    height: 100vh;
+    min-height: 620px;
+    overflow: hidden;
+    background: var(--morado-oscuro);
+}
+
+/* Foto de fondo (se mueve un poquito con el scroll) */
+.familia-foto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+}
+
+/* Parte de abajo borrosa con el título */
+.familia-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 52%;
+    border-top: 1px solid rgba(130, 104, 213, 0.8);
+    background: rgba(40, 30, 70, 0.15);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 0 5%;
+}
+
+.familia h1 {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: clamp(56px, 9vw, 130px);
+    line-height: 0.85;
+    letter-spacing: -0.01em;
+    color: var(--celeste);
+}
+
+.familia p {
+    font-size: clamp(18px, 2.2vw, 30px);
+    font-weight: 800;
+    line-height: 1.35;
+    text-align: justify;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* ===================================================== */
+/* ----- 2. GUIDED BY OUR LOVE ----- */
+/* ===================================================== */
+.vision {
+    position: relative;
+    padding: 110px 8% 120px;
+    background: var(--morado-oscuro);
+}
+
+/* Borde de triangulitos arriba */
+.vision::before {
+    content: "";
+    position: absolute;
+    top: -18px;
+    left: 0;
+    right: 0;
+    height: 18px;
+    background:
+        linear-gradient(135deg, transparent 50%, var(--morado-oscuro) 50%) 0 0 / 36px 18px repeat-x,
+        linear-gradient(225deg, transparent 50%, var(--morado-oscuro) 50%) 0 0 / 36px 18px repeat-x;
+}
+
+.vision h2 {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: clamp(40px, 6vw, 84px);
+    line-height: 1;
+    color: var(--celeste);
+    max-width: 1050px;
+    margin: 0 auto 70px;
+}
+
+.vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.vision-grid p {
+    font-size: clamp(17px, 1.8vw, 23px);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* Gato rompiendo el papel */
+.vision-gato {
+    justify-self: center;
+    width: 100%;
+    max-width: 380px;
+    animation: asomar 5s ease-in-out infinite;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+}
+
+@keyframes asomar {
+    50% {
+        transform: translateY(-12px) rotate(-1.5deg);
+    }
+}
+
+/* ===================================================== */
+/* ----- 3. EQUIPO (cartas apiladas) ----- */
+/* ===================================================== */
+.equipo {
+    padding: 90px 8% 130px;
+    background: var(--morado-oscuro);
+    text-align: center;
+}
+
+.equipo h2 {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 60px);
+    line-height: 1.05;
+    color: var(--celeste);
+    margin-bottom: 90px;
+}
+
+.equipo-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+/* Pila de cartas */
+.pila {
+    position: relative;
+    width: 230px;
+    height: 270px;
+}
+
+.carta {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.6s;
+}
+
+.carta-atras-1 {
+    transform: rotate(-9deg) translate(-14px, 14px);
+    background: #6d8fb5;
+}
+
+.carta-atras-2 {
+    transform: rotate(6deg) translate(12px, -8px);
+    background: #1f3f3a;
+}
+
+/* Carta del frente */
+.carta-frente {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Círculos finitos dentro de la carta */
+.carta-frente::before,
+.carta-frente::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.carta-frente::before {
+    width: 180px;
+    height: 180px;
+}
+
+.carta-frente::after {
+    width: 150px;
+    height: 150px;
+}
+
+.carta-iniciales {
+    position: relative;
+    z-index: 1;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: 60px;
+    color: var(--blanco);
+}
+
+/* Si el miembro tiene foto, tapa las iniciales */
+.carta-foto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+}
+
+/* Animación al cambiar de miembro */
+.carta-frente.saliendo {
+    transform: translateX(-60px) rotate(-12deg);
+    opacity: 0;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.carta-frente.entrando {
+    animation: entrar 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes entrar {
+    from {
+        transform: translateX(60px) rotate(10deg);
+        opacity: 0;
+    }
+}
+
+/* Texto del miembro */
+.miembro {
+    max-width: 340px;
+}
+
+.miembro h3 {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.1;
+}
+
+.miembro-rol {
+    display: block;
+    color: var(--celeste);
+    font-weight: 800;
+    font-size: 13px;
+    margin: 2px 0 14px;
+}
+
+.miembro p {
+    font-size: 16px;
+    font-weight: 600;
+    min-height: 52px;
+}
+
+.miembro-controles {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.flecha {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    color: var(--blanco);
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    transition: transform 0.25s;
+}
+
+.flecha:hover {
+    transform: scale(1.1);
+}
+
+.flecha:active {
+    transform: scale(0.95);
+}
+
+.flecha-anterior {
+    background: var(--morado-boton);
+}
+
+.flecha-siguiente {
+    background: var(--celeste);
+}
+
+.contador {
+    font-weight: 800;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-left: 6px;
+}
+
+/* ----- Pie de página ----- */
+.pie {
+    background: var(--morado);
+    text-align: center;
+    padding: 24px 20px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* ===================================================== */
+/* ----- CELULAR ----- */
+/* ===================================================== */
+@media (max-width: 800px) {
+    .menu {
+        flex-direction: column;
+        border-radius: 24px;
+        padding: 10px 16px;
+        gap: 6px;
+    }
+
+    .menu nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .menu nav a {
+        font-size: 14px;
+    }
+
+    .familia-panel {
+        height: 60%;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        align-content: center;
+    }
+
+    .vision-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .equipo-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .miembro-controles {
+        justify-content: center;
+    }
+}
+
+/* Si la persona tiene desactivadas las animaciones */
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+    .vision-gato {
+        animation: none;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== MENÚ (cambia los href si tus archivos tienen otro nombre) ===== -->
+<header class="menu">
+    <a class="logo" href="index.html">
+        <strong>PET NOVA</strong>
+        <span>- Cuidamos lo que amas</span>
+    </a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="nosotros.html" class="actual">About Us</a>
+        <a href="index.html#functions">Functions</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="privacidad.html">Privacy Policy</a>
+    </nav>
+</header>
+
+<!-- ===================================================== -->
+<!-- 1. OUR FAMILY -->
+<!-- Cambia "familia.jpg" por tu foto de la familia con el perro -->
+<!-- ===================================================== -->
+<section class="familia">
+    <img class="familia-foto" id="familiaFoto" src="familia.jpg" alt="Family with their dog" onerror="this.style.display='none'">
+
+    <div class="familia-panel">
+        <h1 class="reveal">Our Family and Paws</h1>
+        <p class="reveal">More than just an app, we are guardians of your pet and a family united by our love for animals everywhere.</p>
+    </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- 2. GUIDED BY OUR LOVE -->
+<!-- Cambia "gato-papel.png" por tu imagen del gato rompiendo el papel -->
+<!-- ===================================================== -->
+<section class="vision">
+    <h2 class="reveal">Guided by our love, driven by constant innovation</h2>
+
+    <div class="vision-grid">
+        <p class="reveal">At Pet Nova we believe that the best ideas are born from teamwork. Our team shares a common vision: to develop innovative solutions that improve the lives of pets and strengthen the bond with their families. Every member contributes creativity, commitment, and passion to make this project a reality for every single pet owner out there.</p>
+
+        <img class="vision-gato reveal" src="gato-papel.png" alt="Cat peeking through torn paper" onerror="this.style.display='none'">
+    </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- 3. EQUIPO (los miembros se escriben en el JS de abajo) -->
+<!-- ===================================================== -->
+<section class="equipo">
+    <h2 class="reveal">Get to know the members of our team</h2>
+
+    <div class="equipo-grid reveal">
+        <div class="pila">
+            <div class="carta carta-atras-1" id="cartaAtras1"></div>
+            <div class="carta carta-atras-2" id="cartaAtras2"></div>
+            <div class="carta carta-frente" id="cartaFrente">
+                <span class="carta-iniciales" id="iniciales"></span>
+            </div>
+        </div>
+
+        <div class="miembro">
+            <h3 id="miembroNombre"></h3>
+            <span class="miembro-rol" id="miembroRol"></span>
+            <p id="miembroTexto"></p>
+
+            <div class="miembro-controles">
+                <button class="flecha flecha-anterior" id="anterior" aria-label="Previous member">‹</button>
+                <button class="flecha flecha-siguiente" id="siguiente" aria-label="Next member">›</button>
+                <span class="contador" id="contador"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PIE ===== -->
+<footer class="pie">
+    © 2026 Pet Nova – Cuidamos lo que amas
+</footer>
+
+<script>
+/* ===================================================== */
+/* ===== MIEMBROS DEL EQUIPO ===== */
+/* Cambia los nombres, textos y colores por los de tu equipo. */
+/* Si tienes foto de alguien, pon foto: 'oliver.jpg'. Si no, deja foto: '' y salen las iniciales. */
+/* ===================================================== */
+const miembros = [
+    {
+        nombre: 'Oliver Montenegro',
+        rol: 'Pet Nova Team',
+        texto: 'Focused on turning creative ideas into practical solutions for pet owners.',
+        color: '#e08a32',
+        foto: ''
+    },
+    {
+        nombre: 'Team Member 2',
+        rol: 'Pet Nova Team',
+        texto: 'Write here what this member does in the project.',
+        color: '#8268d5',
+        foto: ''
+    },
+    {
+        nombre: 'Team Member 3',
+        rol: 'Pet Nova Team',
+        texto: 'Write here what this member does in the project.',
+        color: '#0bbfdf',
+        foto: ''
+    },
+    {
+        nombre: 'Team Member 4',
+        rol: 'Pet Nova Team',
+        texto: 'Write here what this member does in the project.',
+        color: '#e0567a',
+        foto: ''
+    }
+];
+
+let actual = 0;
+
+const cartaFrente = document.getElementById('cartaFrente');
+const cartaAtras1 = document.getElementById('cartaAtras1');
+const cartaAtras2 = document.getElementById('cartaAtras2');
+const iniciales = document.getElementById('iniciales');
+const miembroNombre = document.getElementById('miembroNombre');
+const miembroRol = document.getElementById('miembroRol');
+const miembroTexto = document.getElementById('miembroTexto');
+const contador = document.getElementById('contador');
+
+/* Saca las iniciales del nombre: "Oliver Montenegro" -> "OM" */
+function sacarIniciales(nombre) {
+    return nombre.split(' ').map(palabra => palabra[0]).slice(0, 2).join('').toUpperCase();
+}
+
+/* Pone en pantalla al miembro número "i" */
+function mostrar(i) {
+    const m = miembros[i];
+
+    cartaFrente.style.background = m.color;
+    iniciales.textContent = sacarIniciales(m.nombre);
+
+    // Foto (si tiene)
+    const fotoVieja = cartaFrente.querySelector('.carta-foto');
+    if (fotoVieja) fotoVieja.remove();
+    if (m.foto) {
+        const img = document.createElement('img');
+        img.className = 'carta-foto';
+        img.src = m.foto;
+        img.alt = m.nombre;
+        img.onerror = () => img.remove();
+        cartaFrente.appendChild(img);
+    }
+
+    miembroNombre.textContent = m.nombre;
+    miembroRol.textContent = m.rol;
+    miembroTexto.textContent = m.texto;
+
+    // Las cartas de atrás toman el color de los siguientes miembros
+    cartaAtras1.style.background = miembros[(i + 1) % miembros.length].color;
+    cartaAtras2.style.background = miembros[(i + 2) % miembros.length].color;
+
+    contador.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(miembros.length).padStart(2, '0');
+}
+
+/* Cambia de miembro con animación */
+function cambiar(direccion) {
+    cartaFrente.classList.remove('entrando');
+    cartaFrente.classList.add('saliendo');
+
+    setTimeout(() => {
+        actual = (actual + direccion + miembros.length) % miembros.length;
+        mostrar(actual);
+        cartaFrente.classList.remove('saliendo');
+        void cartaFrente.offsetWidth; // reinicia la animación
+        cartaFrente.classList.add('entrando');
+    }, 350);
+}
+
+document.getElementById('siguiente').addEventListener('click', () => cambiar(1));
+document.getElementById('anterior').addEventListener('click', () => cambiar(-1));
+
+mostrar(actual);
+
+/* ===================================================== */
+/* ===== APARECER CON EL SCROLL ===== */
+/* ===================================================== */
+const observador = new IntersectionObserver(entradas => {
+    entradas.forEach(entrada => {
+        if (entrada.isIntersecting) {
+            entrada.target.classList.add('visible');
+            observador.unobserve(entrada.target);
+        }
+    });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observador.observe(el));
+
+/* ===================================================== */
+/* ===== FOTO DE LA FAMILIA: se mueve un poquito con el scroll ===== */
+/* ===================================================== */
+const familiaFoto = document.getElementById('familiaFoto');
+window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight) {
+        familiaFoto.style.transform = 'translateY(' + (y * 0.3) + 'px) scale(1.05)';
+    }
+});
+</script>
+
+</body>
+</html>

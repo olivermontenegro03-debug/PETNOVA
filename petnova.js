@@ -13,7 +13,7 @@ const observador = new IntersectionObserver(entradas => {
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach(el => observador.observe(el));
 
-/* ===== ACORDEÓN: la tarjeta tocada se agranda y las demás se achican ===== */
+/* ===== ACORDEÓN ===== */
 const paneles = document.querySelectorAll('.panel');
 function activar(panel) {
     paneles.forEach(p => p.classList.toggle('active', p === panel));
@@ -27,10 +27,10 @@ paneles.forEach(p => {
 /* ===== MAPA INTERACTIVO (OpenStreetMap + Leaflet) ===== */
 const CENTRO = [8.8803, -79.7833]; // La Chorrera, Panamá
 const TIPOS = {
-    vet:        { emoji: '🩺', nombre: 'Veterinarian' },
-    tienda:     { emoji: '🛍️', nombre: 'Pet store' },
+    vet: { emoji: '🩺', nombre: 'Veterinarian' },
+    tienda: { emoji: '🛍️', nombre: 'Pet store' },
     peluqueria: { emoji: '✂️', nombre: 'Pet grooming' },
-    parque:     { emoji: '🌳', nombre: 'Dog park' }
+    parque: { emoji: '🌳', nombre: 'Dog park' }
 };
 
 const mapa = L.map('map').setView(CENTRO, 14);
@@ -146,13 +146,13 @@ buscarZona();
 /* ===== CARRUSEL PET MOMENTS ===== */
 // Guarda tus fotos en la carpeta img/ con estos nombres (pet1.jpg ... pet7.jpg)
 const fotos = [
-    { archivo: 'img/pet1.jpg', fondo: '#e8935a', giro: -6, alt: 'Corgi sobre fondo naranja' },
-    { archivo: 'img/pet2.jpg', fondo: '#ffffff', giro: 4,  alt: 'Perro con un peluche' },
-    { archivo: 'img/pet3.jpg', fondo: '#7dbb5a', giro: -3, alt: 'Perro feliz sobre el pasto' },
-    { archivo: 'img/pet4.jpg', fondo: '#4a9fc9', giro: 5,  alt: 'Bulldog con sudadera amarilla' },
-    { archivo: 'img/pet5.jpg', fondo: '#7fd4cf', giro: -5, alt: 'Gatito levantando la pata' },
-    { archivo: 'img/pet6.jpg', fondo: '#e8935a', giro: 3,  alt: 'Corgi cachorro' },
-    { archivo: 'img/pet7.jpg', fondo: '#e88ba8', giro: -4, alt: 'Samoyedo sonriendo' }
+    { archivo: 'perrochoco.jpg', fondo: '#523f7a', giro: -6, alt: 'Corgi sobre fondo naranja' },
+    { archivo: 'ftgato2.jpg', fondo: '#ffffff', giro: 4, alt: 'Perro con un peluche' },
+    { archivo: 'perrosdueño.jpg', fondo: '#0cbddc', giro: -3, alt: 'Perro feliz sobre el pasto' },
+    { archivo: 'gatos.jpg', fondo: '#523f7a', giro: 5, alt: 'Bulldog con sudadera amarilla' },
+    { archivo: 'perroplaya.jpg', fondo: '#ffffff', giro: -5, alt: 'Gatito levantando la pata' },
+    { archivo: 'gatonaranja.jpg', fondo: '#0cbddc', giro: 3, alt: 'Corgi cachorro' },
+    { archivo: 'cachorros.jpg', fondo: '#523f7a', giro: -4, alt: 'Samoyedo sonriendo' }
 ];
 const pista = document.getElementById('pista');
 // Se duplican las fotos para que el movimiento sea infinito y sin saltos
