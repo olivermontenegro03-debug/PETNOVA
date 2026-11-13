@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact – Pet Nova</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ===================================================== */
+        /* ===== BASE ===== */
+        /* ===================================================== */
+        :root {
+            --morado: #523f7a;
+            --lila: #8268d5;
+            --celeste: #0cbddc;
+            --tinta: #2b2046;
+            --blanco: #ffffff;
+            /* Tonos suaves hechos con los mismos colores de Pet Nova */
+            --lila-suave: rgba(130, 104, 213, 0.12);
+            --celeste-suave: rgba(12, 189, 220, 0.14);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', Arial, sans-serif;
+            color: var(--tinta);
+            background: var(--morado);
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Baloo 2', Arial, sans-serif;
+            font-weight: 800;
+        }
+
+        .contenedor {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--celeste);
+            outline-offset: 3px;
+        }
+
+        /* Aparecer suave al cargar / al bajar (una sola vez) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .retraso-1 {
+            transition-delay: 0.12s;
+        }
+
+        .retraso-2 {
+            transition-delay: 0.24s;
+        }
+
+        /* ===================================================== */
+        /* ===== MENÚ ===== */
+        /* ===================================================== */
+        .menu {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            z-index: 1000;
+            background: #fff;
+            border: 1px solid var(--lila);
+            border-radius: 50px;
+            padding: 10px 22px;
+            box-shadow: 0 8px 25px rgba(82, 63, 122, .35);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo img {
+            width: 40px;
+        }
+
+        .logo-texto strong {
+            display: block;
+            font-family: 'Baloo 2';
+            font-size: 19px;
+            color: var(--morado);
+            line-height: 1.1;
+        }
+
+        .logo-texto small {
+            color: var(--lila);
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .menu nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        .menu nav a {
+            font-weight: 800;
+            color: var(--morado);
+            padding: 4px 0;
+            border-bottom: 3px solid transparent;
+            transition: border-color .25s, color .25s;
+        }
+
+        .menu nav a:hover,
+        .menu nav a.actual {
+            color: var(--lila);
+            border-color: var(--lila);
+        }
+
+        .login {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            text-decoration: underline;
+            color: var(--morado);
+        }
+
+        .circulo-morado {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--morado);
+        }
+
+        .menu-boton {
+            display: none;
+            background: none;
+            border: 0;
+            font-size: 26px;
+            color: var(--morado);
+            cursor: pointer;
+        }
+
+        /* ===================================================== */
+        /* ===== CONTACTO ===== */
+        /* ===================================================== */
+        .contacto {
+            position: relative;
+            padding: 160px 0 110px;
+            overflow: hidden;
+        }
+
+        /* Decoración: círculo lila y puntitos (quietos) */
+        .contacto::before {
+            content: "";
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background: var(--lila);
+            opacity: 0.35;
+            left: -220px;
+            bottom: -220px;
+        }
+
+        .contacto::after {
+            content: "";
+            position: absolute;
+            top: 130px;
+            right: 30px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 3px, transparent 4px) 0 0 / 22px 22px;
+        }
+
+        .contacto-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* ----- Lado izquierdo ----- */
+        .etiqueta-seccion {
+            display: inline-block;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 7px 16px;
+            border-radius: 30px;
+            margin-bottom: 18px;
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+        }
+
+        .contacto h1 {
+            font-size: clamp(54px, 7vw, 100px);
+            line-height: 0.9;
+            color: #fff;
+            margin-bottom: 24px;
+        }
+
+        .contacto h1 span {
+            color: var(--celeste);
+        }
+
+        .contacto-intro {
+            color: #fff;
+            font-size: clamp(18px, 1.8vw, 21px);
+            font-weight: 600;
+            line-height: 1.55;
+            max-width: 440px;
+            margin-bottom: 40px;
+        }
+
+        /* Tarjetas de datos de contacto */
+        .datos {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 440px;
+        }
+
+        .dato {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 18px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: #fff;
+            transition: background .3s, transform .3s;
+        }
+
+        a.dato:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(4px);
+        }
+
+        .dato-icono {
+            flex: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: var(--celeste);
+            color: #fff;
+        }
+
+        .dato-icono svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .dato h4 {
+            font-size: 15px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--celeste);
+            line-height: 1.2;
+        }
+
+        .dato p {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* ----- Formulario ----- */
+        .formulario {
+            position: relative;
+            background: #fff;
+            border-radius: 36px;
+            padding: 40px;
+            box-shadow: 0 30px 60px rgba(20, 12, 45, 0.35);
+        }
+
+        /* Patita celeste en la esquina */
+        .formulario-pata {
+            position: absolute;
+            top: -26px;
+            right: 34px;
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;
+            background: var(--celeste);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            transform: rotate(10deg);
+            box-shadow: 0 10px 20px rgba(12, 189, 220, 0.35);
+        }
+
+        .formulario-pata svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .formulario h2 {
+            font-size: 32px;
+            color: var(--morado);
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+
+        .formulario-sub {
+            color: var(--lila);
+            font-weight: 700;
+            margin-bottom: 26px;
+        }
+
+        .fila {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 18px;
+        }
+
+        .campo label {
+            font-weight: 800;
+            font-size: 14px;
+            color: var(--morado);
+        }
+
+        .campo label span {
+            color: var(--celeste);
+        }
+
+        .campo input,
+        .campo textarea {
+            font: 600 16px 'Nunito', sans-serif;
+            color: var(--tinta);
+            background: var(--lila-suave);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 14px 16px;
+            outline: none;
+            transition: border-color .25s, background .25s, box-shadow .25s;
+        }
+
+        .campo textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .campo input::placeholder,
+        .campo textarea::placeholder {
+            color: rgba(82, 63, 122, 0.45);
+        }
+
+        .campo input:focus,
+        .campo textarea:focus {
+            background: #fff;
+            border-color: var(--celeste);
+            box-shadow: 0 0 0 4px var(--celeste-suave);
+        }
+
+        /* Campo con error */
+        .campo.error input,
+        .campo.error textarea {
+            border-color: var(--lila);
+            background: #fff;
+        }
+
+        .mensaje-error {
+            display: none;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--lila);
+        }
+
+        .campo.error .mensaje-error {
+            display: block;
+        }
+
+        .boton-enviar {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border: 0;
+            cursor: pointer;
+            font: 800 18px 'Nunito', sans-serif;
+            color: #fff;
+            background: var(--morado);
+            padding: 16px;
+            border-radius: 40px;
+            margin-top: 6px;
+            transition: background .25s, transform .25s;
+        }
+
+        .boton-enviar:hover {
+            background: var(--lila);
+            transform: translateY(-2px);
+        }
+
+        .boton-enviar:disabled {
+            opacity: 0.7;
+            cursor: wait;
+            transform: none;
+        }
+
+        .aviso-error {
+            display: none;
+            margin-top: 14px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: var(--lila-suave);
+            color: var(--morado);
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .boton-enviar svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Mensaje de gracias */
+        .gracias {
+            display: none;
+            text-align: center;
+            padding: 30px 10px;
+        }
+
+        .gracias-icono {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            background: var(--celeste);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font-size: 40px;
+            font-weight: 800;
+        }
+
+        .gracias h2 {
+            margin-bottom: 10px;
+        }
+
+        .gracias p {
+            color: var(--morado);
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 22px;
+        }
+
+        .gracias button {
+            border: 2px solid var(--lila);
+            background: #fff;
+            color: var(--lila);
+            font: 800 15px 'Nunito', sans-serif;
+            padding: 10px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background .25s, color .25s;
+        }
+
+        .gracias button:hover {
+            background: var(--lila);
+            color: #fff;
+        }
+
+        .formulario.enviado form {
+            display: none;
+        }
+
+        .formulario.enviado .gracias {
+            display: block;
+        }
+
+        /* ===================================================== */
+        /* ===== FOOTER ===== */
+        /* ===================================================== */
+        footer {
+            background: var(--morado);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            padding: 50px 0 25px;
+        }
+
+        .footer-columnas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-columnas>div {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        footer h4 {
+            font-size: 22px;
+            color: var(--celeste);
+            margin-bottom: 10px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 6px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, .2);
+            padding-top: 20px;
+            font-size: 13px;
+            color: #c9bbec;
+        }
+
+        /* ===================================================== */
+        /* ===== CELULAR Y TABLET ===== */
+        /* ===================================================== */
+        @media (max-width: 960px) {
+            .contacto-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .menu {
+                border-radius: 26px;
+                flex-wrap: wrap;
+            }
+
+            .menu-boton {
+                display: block;
+                margin-left: auto;
+            }
+
+            .login {
+                display: none;
+            }
+
+            .menu nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                padding: 8px 0;
+            }
+
+            .menu nav.abierto {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .contacto {
+                padding-top: 130px;
+            }
+
+            .formulario {
+                padding: 34px 22px 26px;
+                border-radius: 28px;
+            }
+
+            .fila {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Íconos -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="i-pata" viewBox="0 0 100 100" fill="currentColor">
+            <ellipse cx="50" cy="68" rx="24" ry="20" />
+            <ellipse cx="20" cy="42" rx="10" ry="13" transform="rotate(-20 20 42)" />
+            <ellipse cx="38" cy="22" rx="11" ry="14" />
+            <ellipse cx="62" cy="22" rx="11" ry="14" />
+            <ellipse cx="80" cy="42" rx="10" ry="13" transform="rotate(20 80 42)" />
+        </symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+        </symbol>
+        <symbol id="i-telefono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+                d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" />
+        </symbol>
+        <symbol id="i-correo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 6-10 7L2 6" />
+        </symbol>
+        <symbol id="i-enviar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13" />
+            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </symbol>
+    </svg>
+
+    <!-- MENÚ -->
+    <header class="menu" id="menu">
+        <a class="logo" href="index.html">
+            <img src="petnovalogo.png" alt="" onerror="this.style.display='none'">
+            <span class="logo-texto"><strong>PET NOVA</strong><small>- Cuidamos lo que amas</small></span>
+        </a>
+        <button class="menu-boton" id="menuBoton" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <nav id="menuNav">
+            <a href="index.html">Home</a>
+            <a href="index-about us.html">About Us</a>
+            <a href="home-nuevo.html#funciones">Functions</a>
+            <a href="mensaje.html">Contact</a>
+            <a href="privacidad.html">Privacy Policy</a>
+        </nav>
+        <a class="login" href="#formulario"><span class="circulo-morado"></span>LOG IN</a>
+    </header>
+
+    <main>
+        <section class="contacto">
+            <div class="contenedor contacto-grid">
+
+                <!-- ===== Lado izquierdo: título y datos ===== -->
+                <div>
+                    <span class="etiqueta-seccion reveal">Contact</span>
+                    <h1 class="reveal">Let's talk about <span>your pets</span></h1>
+                    <p class="contacto-intro reveal retraso-1">If you have any questions about our services or any
+                        problem, reach out to us and contact us today</p>
+
+                    <div class="datos">
+                        <div class="dato reveal retraso-1">
+                            <span class="dato-icono"><svg>
+                                    <use href="#i-pin" />
+                                </svg></span>
+                            <div>
+                                <h4>Location Details</h4>
+                                <p>La Chorrera, Panamá Oeste, Panamá</p>
+                            </div>
+                        </div>
+                        <a class="dato reveal retraso-2" href="tel:1234567890">
+                            <span class="dato-icono"><svg>
+                                    <use href="#i-telefono" />
+                                </svg></span>
+                            <div>
+                                <h4>Tel</h4>
+                                <p>123-456-7890</p>
+                            </div>
+                        </a>
+                        <a class="dato reveal retraso-2" href="mailto:petnovitas2027@gmail.com">
+                            <span class="dato-icono"><svg>
+                                    <use href="#i-correo" />
+                                </svg></span>
+                            <div>
+                                <h4>Email</h4>
+                                <p>petnovitas2027@gmail.com</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ===== Lado derecho: formulario ===== -->
+                <div class="formulario reveal retraso-1" id="formulario">
+                    <span class="formulario-pata"><svg viewBox="0 0 100 100">
+                            <use href="#i-pata" />
+                        </svg></span>
+
+                    <form id="formContacto" novalidate>
+                        <h2>Send Us a Message</h2>
+                        <p class="formulario-sub">We'll get back to you as soon as possible.</p>
+
+                        <div class="fila">
+                            <div class="campo">
+                                <label for="nombre">First name <span>*</span></label>
+                                <input type="text" id="nombre" name="nombre" placeholder="Your first name"
+                                    autocomplete="given-name" required>
+                                <small class="mensaje-error">Please write your first name.</small>
+                            </div>
+                            <div class="campo">
+                                <label for="apellido">Last name <span>*</span></label>
+                                <input type="text" id="apellido" name="apellido" placeholder="Your last name"
+                                    autocomplete="family-name" required>
+                                <small class="mensaje-error">Please write your last name.</small>
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="correo">Email <span>*</span></label>
+                            <input type="email" id="correo" name="correo" placeholder="you@email.com"
+                                autocomplete="email" required>
+                            <small class="mensaje-error">Please write a valid email.</small>
+                        </div>
+
+                        <div class="campo">
+                            <label for="asunto">Subject</label>
+                            <input type="text" id="asunto" name="asunto" placeholder="What is it about?">
+                        </div>
+
+                        <div class="campo">
+                            <label for="mensaje">Message</label>
+                            <textarea id="mensaje" name="mensaje" placeholder="Tell us about your pet..."></textarea>
+                        </div>
+
+                        <button type="submit" class="boton-enviar">Submit <svg>
+                                <use href="#i-enviar" />
+                            </svg></button>
+                        <p class="aviso-error" id="avisoError" role="alert">Oops! The message could not be sent. Please
+                            try again or write to petnovitas2027@gmail.com.</p>
+                    </form>
+
+                    <!-- Se muestra después de enviar -->
+                    <div class="gracias" role="status">
+                        <div class="gracias-icono">✓</div>
+                        <h2>Thank you!</h2>
+                        <p>Your message was sent. We will answer you soon.</p>
+                        <button type="button" id="otroMensaje">Send another message</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <div class="contenedor">
+            <div class="footer-columnas">
+                <div>
+                    <h4>Pet Nova</h4>
+                    <p>La Chorrera, Panamá Oeste, Panamá</p>
+                </div>
+                <div>
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li>123-456-7890</li>
+                        <li><a href="mailto:petnovitas2027@gmail.com">petnovitas2027@gmail.com</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Síguenos</h4>
+                    <ul>
+                        <li><a href="http://www.facebook.com">Facebook</a></li>
+                        <li><a href="http://www.instagram.com">Instagram</a></li>
+                        <li><a href="http://www.tiktok.com">TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copyright">© PetNova by PetNovitasTeam</p>
+        </div>
+    </footer>
+
+    <script>
+        /* ===================================================== */
+        /* ===== MENÚ DEL CELULAR ===== */
+        /* ===================================================== */
+        const menuBoton = document.getElementById('menuBoton');
+        const menuNav = document.getElementById('menuNav');
+
+        menuBoton.addEventListener('click', () => {
+            const abierto = menuNav.classList.toggle('abierto');
+            menuBoton.setAttribute('aria-expanded', abierto);
+            menuBoton.textContent = abierto ? '✕' : '☰';
+        });
+
+        /* ===================================================== */
+        /* ===== FORMULARIO ===== */
+        /* Revisa los campos obligatorios y envía el mensaje con Formspree */
+        /* ===================================================== */
+
+        // ↓↓↓ PEGA AQUÍ EL ENLACE QUE TE DA FORMSPREE ↓↓↓
+        const FORMSPREE_URL = 'https://formspree.io/f/TU_CODIGO';
+
+        const form = document.getElementById('formContacto');
+        const avisoError = document.getElementById('avisoError');
+        const cajaFormulario = document.getElementById('formulario');
+
+        function revisarCampo(input) {
+            const campo = input.closest('.campo');
+            const valor = input.value.trim();
+            let bien = valor !== '';
+            if (input.type === 'email') {
+                bien = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
+            }
+            campo.classList.toggle('error', !bien);
+            return bien;
+        }
+
+        // Quita el error mientras la persona escribe
+        form.querySelectorAll('[required]').forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.closest('.campo').classList.contains('error')) revisarCampo(input);
+            });
+        });
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            const obligatorios = [...form.querySelectorAll('[required]')];
+            const resultados = obligatorios.map(revisarCampo);
+            if (resultados.includes(false)) {
+                obligatorios[resultados.indexOf(false)].focus();
+                return;
+            }
+
+            enviar();
+        });
+
+        async function enviar() {
+            const boton = form.querySelector('.boton-enviar');
+            const textoBoton = boton.innerHTML;
+            boton.disabled = true;
+            boton.textContent = 'Sending...';
+            avisoError.style.display = 'none';
+
+            // Junta todo lo que la persona escribió
+            const datos = new FormData(form);
+            datos.append('_replyto', form.correo.value.trim());   // para responderle directo
+            datos.append('_subject', form.asunto.value.trim() || 'New message from the Pet Nova website');
+
+            try {
+                const respuesta = await fetch(FORMSPREE_URL, {
+                    method: 'POST',
+                    body: datos,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (respuesta.ok) {
+                    cajaFormulario.classList.add('enviado');   // muestra "Thank you!"
+                } else {
+                    avisoError.style.display = 'block';
+                }
+            } catch (error) {
+                avisoError.style.display = 'block';        // sin internet o enlace mal puesto
+            }
+
+            boton.disabled = false;
+            boton.innerHTML = textoBoton;
+        }
+
+        document.getElementById('otroMensaje').addEventListener('click', () => {
+            form.reset();
+            cajaFormulario.classList.remove('enviado');
+        });
+
+        /* ===================================================== */
+        /* ===== APARECER (una sola vez) ===== */
+        /* ===================================================== */
+        const observador = new IntersectionObserver(entradas => {
+            entradas.forEach(entrada => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('visible');
+                    observador.unobserve(entrada.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observador.observe(el));
+    </script>
+
+</body>
+
+</html>

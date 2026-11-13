@@ -70,6 +70,7 @@ h3 {
     right: 16px;
     z-index: 1000;
     background: #fff;
+    border: 1px solid var(--lila);
     border-radius: 50px;
     padding: 10px 22px;
     box-shadow: 0 8px 25px rgba(82, 63, 122, .35);
@@ -110,7 +111,7 @@ h3 {
 
 .menu nav a {
     font-weight: 800;
-    color: #241b3a;
+    color: var(--morado);
     padding: 4px 0;
     border-bottom: 3px solid transparent;
     transition: border-color .25s, color .25s;
@@ -125,7 +126,7 @@ h3 {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-weight: 800;
+    font-weight: 700;
     text-decoration: underline;
     color: var(--morado);
 }
@@ -254,106 +255,6 @@ h3 {
     transform: translateY(-3px) scale(1.04);
     background: var(--lila);
 }
-
-/* ---------- AMOR 
-.amor {
-    position: relative;
-    padding: 100px 0 120px;
-    text-align: center;
-    overflow: hidden;
-}
-
-.amor h2 {
-    color: var(--celeste);
-    font-size: clamp(32px, 5vw, 52px);
-    max-width: 850px;
-    margin: 0 auto 40px;
-    position: relative;
-    z-index: 2;
-}
-
-.forma {
-    position: absolute;
-    z-index: 1;
-}
-
-.forma-celeste-1,
-.forma-celeste-2 {
-    width: 260px;
-    height: 260px;
-    background: var(--celeste);
-    border-radius: 50%;
-    animation: flotar2 9s ease-in-out infinite;
-}
-
-.forma-celeste-1 {
-    top: -60px;
-    left: -80px;
-}
-
-.forma-celeste-2 {
-    bottom: -90px;
-    right: -90px;
-    animation-delay: -4s;
-}
-
-.forma-flor {
-    width: 130px;
-    height: 130px;
-    background: #8268d5;
-    border-radius: 50% 10% 50% 10%;
-    animation: girar 14s linear infinite;
-}
-
-.flor-1 {
-    top: 10px;
-    right: 6%;
-}
-
-.flor-2 {
-    bottom: 40px;
-    left: 5%;
-    animation-direction: reverse;
-}
-
-@keyframes flotar2 {
-    50% {
-        transform: translate(18px, 22px);
-    }
-}
-
-@keyframes girar {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.cartel-morado {
-    position: relative;
-    z-index: 2;
-    background: var(--lila);
-    color: #fff;
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 36px 40px;
-    border-radius: 16px;
-    font-size: 17px;
-    line-height: 1.7;
-    transform: rotate(-1.5deg);
-}
-
-.sticker-pata {
-    position: absolute;
-    top: -24px;
-    right: 28px;
-    width: 52px;
-    height: 52px;
-    background: #dceefc;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-size: 24px;
-} ---------- */
 /* ---------- AMOR ---------- */
 .amor {
     position: relative;
@@ -568,7 +469,6 @@ h3 {
 }
 
 :root {
-    --morado: #8268d5;
     --morado-oscuro: #2a1f4d;
     --cian: #29c4e0;
     --blanco: #ffffff;
@@ -582,7 +482,7 @@ h3 {
 
 body {
     font-family: 'Nunito', sans-serif;
-    background: var(--morado);
+    background: var(--lila);
 }
 
 /* Sección que contiene el acordeón */
